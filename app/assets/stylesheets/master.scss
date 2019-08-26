@@ -3,9 +3,7 @@
 body {
 	background: image_url('whirlpool.png');
 	font-family: "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif;
-
-
-
+/*	font-family: 'capsuularegular';	*/
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -28,4 +26,10 @@ h1, h2, h3, h4, h5, h6 {
 .navbar {
 	background: image_url('dark-triangles.png');
 	box-shadow: 0px 1px 3px #2a2a2a;
+}
+
+.navbar-dark .navbar-brand {
+	color: #DFDFDF;
+	font-family: 'capsuularegular';
+	font-size: 26px;
 }
