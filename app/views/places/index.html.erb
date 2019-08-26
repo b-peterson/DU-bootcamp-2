@@ -13,5 +13,12 @@
 			</div>
 
 		<% end %>
+		<div class="a_pagination">
+			<div class="page_info">
+				<%= page_entries_info @posts %>
+			</div>
+			<%= will_paginate @posts, :container => false %>
+		</div>
+
 	</body>
 </html>
