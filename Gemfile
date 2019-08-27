@@ -67,6 +67,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'simple_form'
 gem 'will_paginate', '~> 3.1.0'
 gem 'font-awesome-rails'
+gem 'devise'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
