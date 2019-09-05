@@ -54,7 +54,7 @@
 			
 
 			<!-- Modal -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -76,17 +76,44 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Add a photo</h4>
+						</div>
+						<%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
+						<div class="modal-body">
+								<%= f.input :picture %>
+								<%= f.input :caption %>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+							<%= f.submit "Add a photo", class: 'btn btn-outline-secondary' %>
+						</div>
+						<% end %>
+					</div>
+				</div>
+			</div>
+			
 			<hr>
 			<br />
 			<div class="row">
-				<div class="col col-8 offset-1">
+				<div class="col col-7 offset-1">
 					<h1>Comments</h1><br />
 				</div>
 					
 					<!-- Button trigger modal -->
-				<div class="col col-2">
-					<button type="button" class="btn btn-outline-secondary " data-toggle="modal" data-target="#myModal">
+				<div class="col col-3">
+					<button type="button" class="btn btn-outline-secondary " data-toggle="modal" data-target="#myModal1">
 						Add a comment
+					</button>
+					<button type="button" class="btn btn-outline-secondary " data-toggle="modal" data-target="#myModal2">
+						Add a photo
 					</button>
 				</div>
 			</div>
@@ -95,7 +122,6 @@
 			<hr class="comment_divider">
 			<div class="row">
 				<% @place.comments.each do |comment| %>
-<!-- 					<hr class="comment_divider"> -->
 					<div class="col-12 col-sm-6">
 						<blockquote>
 							<% if comment.humanized_rating.present? %>
@@ -107,6 +133,17 @@
 					</div>
 				<% end %>
 			</div>
+			<div class="row">	
+				<% @place.photos.each do |photo| %>
+				<div class="col col-6">
+				<% if photo.picture.present? %>
+					<%= image_tag photo.picture.url %>
+				<% end %>
+					<p><%= photo.caption %></p>
+					<small><%= photo.user.email %></small>
+				</div>
+				<% end %>
+			<div>
 		</div>
 	
 	</body>
