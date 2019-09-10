@@ -6,11 +6,22 @@
 	</head>
 	<body>
 		<% @places.each do |place| %>
+		
+		
 			<div class="booyah-box col-10 offset-1">
-				<h1><%= link_to place.name, place_path(place), class: 'dark_link' %></h1>
-				<i><%= place.address %></i><br /><br />
-				<p><%= place.description %></p><br />
-			
+				<div class="row">
+					<div class="col-8">
+						<h1><%= link_to place.name, place_path(place), class: 'dark_link' %></h1>
+						<i><%= place.address %></i><br /><br />
+						<p><%= place.description %></p><br />
+					</div>
+					<div class="col-4">
+						<% if place.photos.present? %>
+							<% if place.photos.last.picture.present? %>
+								<%= image_tag place.photos.last.picture.url, class: 'testSheet' %>
+							<% end %>
+						<% end %>
+					</div>
 			
 			<% if place.user.present? %>
 				<small><%= place.user.email %></small>
@@ -28,9 +39,15 @@
 				</blockquote>
 			</div>
 			<% end %>
-			</div>
+		
+		</div>
+		</div>
 
 		<% end %>
+		
+		
+		
+		
 		<div class="a_pagination">
 			<div class="page_info">
 				<%= page_entries_info @posts %>

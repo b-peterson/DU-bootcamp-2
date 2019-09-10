@@ -135,12 +135,14 @@
 			</div>
 			<div class="row">	
 				<% @place.photos.each do |photo| %>
-				<div class="col col-6">
-				<% if photo.picture.present? %>
-					<%= image_tag photo.picture.url %>
-				<% end %>
-					<p><%= photo.caption %></p>
-					<small><%= photo.user.email %></small>
+				<div class="col col-5 polaroid">
+					<% if photo.picture.present? %>
+						<%= image_tag photo.picture.url %>
+					<% end %>
+					<div class="container">
+						<p><%= photo.caption %></p>
+						<small><%= photo.user.email %></small>
+					</div>
 				</div>
 				<% end %>
 			<div>
