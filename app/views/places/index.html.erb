@@ -10,35 +10,44 @@
 		
 			<div class="booyah-box col-10 offset-1">
 				<div class="row">
-					<div class="col-8">
+					<div class="col-7">
 						<h1><%= link_to place.name, place_path(place), class: 'dark_link' %></h1>
 						<i><%= place.address %></i><br /><br />
 						<p><%= place.description %></p><br />
-					</div>
-					<div class="col-4">
-						<% if place.photos.present? %>
-							<% if place.photos.last.picture.present? %>
-								<%= image_tag place.photos.last.picture.url, class: 'testSheet' %>
-							<% end %>
+						
+						<% if place.user.present? %>
+							<small><%= place.user.email %></small>
+						<% end %>
+						
+						<% if place.comments.present? %>
+						<div class="col-12">
+							<blockquote>
+								<% if place.comments.last.humanized_rating.present? %>
+									<b><%= place.comments.last.humanized_rating %></b><br />
+								<% end %>
+								<%= place.comments.last.message %><br />
+								<small><%= place.comments.last.user.email %></small>
+							</blockquote>
+						</div>
 						<% end %>
 					</div>
-			
-			<% if place.user.present? %>
-				<small><%= place.user.email %></small>
-			<% end %>
-			
-			
-			<% if place.comments.present? %>
-			<div class="col-12">
-				<blockquote>
-					<% if place.comments.last.humanized_rating.present? %>
-						<b><%= place.comments.last.humanized_rating %></b><br />
+					<% if place.photos.present? %>
+					<div class="col-4 polaroid">
+							<% if place.photos.last.picture.present? %>
+								<%= image_tag place.photos.last.picture.url %>
+							<% end %>
+						
+						<div class="container">
+							<p><%= place.photos.last.caption %></p>
+							<small><%= place.photos.last.user.email %></small>
+						</div>
+					</div>
 					<% end %>
-					<%= place.comments.last.message %><br />
-					<small><%= place.comments.last.user.email %></small>
-				</blockquote>
-			</div>
-			<% end %>
+			
+			
+			
+			
+			
 		
 		</div>
 		</div>
