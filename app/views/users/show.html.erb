@@ -5,12 +5,12 @@
 		<title></title>
 	</head>
 	<body>
-		<div class="booyah-box">
+		<div class="booyah-box col-10 offset-1">
 			<div class="row">
-				<div class="col-4">
+				<div class="col-3">
 					<%= image_tag 'iconfinder_user_male2_172626.png' %>
 				</div>
-				<div class="col-8">
+				<div class="col-9">
 					<h1><%= @user.email %></h1>
 					<h3>Member Since: <%= @user.created_at.strftime("%B %d, %Y") %></h3>
 					<h4><%= @user.comments.count %> total comments</h4>
@@ -18,6 +18,25 @@
 				</div>
 			</div>
 			<div class="clear"></div>
+			<br /><br />
+			
+			
+			<h1 class="text-center">My Comments</h1>
+			<br /><br />
+			<div class="row">
+				<% @user.comments.each do |comment| %>
+					<div class="col-12 col-sm-6">
+						<h2 class="text-center"><%= link_to comment.place.name, place_path(comment.place), class: 'dark_link' %></h2>
+						<blockquote>
+							<% if comment.humanized_rating.present? %>
+								<b><%= comment.humanized_rating %></b><br />
+							<% end %>
+							<%= comment.message %><br />
+							<small><%= comment.user.email %></small>
+						</blockquote>
+					</div>
+				<% end %>
+			</div>
 		</div>
 	</body>
 </html>
